@@ -6,6 +6,11 @@ import { redirect } from "next/navigation";
 export default async function ProtectedPage() {
   const supabase = await createClient();
 
+  const file_data = await supabase
+  .from('todos')
+  .select('*')
+  .order('id', { ascending: true })
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -30,8 +35,10 @@ export default async function ProtectedPage() {
         </pre>
       </div>
       <div>
-        <h2 className="font-bold text-2xl mb-4">Next steps</h2>
-        <FetchDataSteps />
+        <h2 className="font-bold text-2xl mb-4">Files</h2>
+        <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
+          {JSON.stringify(file_data, null, 2)}
+        </pre>
       </div>
     </div>
   );
