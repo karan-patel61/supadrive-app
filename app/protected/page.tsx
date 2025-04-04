@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
-import { Download, InfoIcon, Table, Trash } from "lucide-react";
+import { Download, InfoIcon, Trash } from "lucide-react";
 import { redirect } from "next/navigation";
+import  Table  from "@/components/table";
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
@@ -59,39 +60,12 @@ export default async function ProtectedPage() {
 
   return (
     <div className="flex-1 w-full flex flex-col gap-12">
-      <div className="w-full">
-        <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">
-          <InfoIcon size="16" strokeWidth={2} />
-          This is a protected page that you can only see as an authenticated
-          user
-        </div>
-      </div>
-      <div className="flex flex-col gap-2 items-start">
-        <h2 className="font-bold text-2xl mb-4">Your user details</h2>
-        <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
-          {JSON.stringify(user, null, 2)}
-        </pre>
-      </div>
       <div>
         <h2 className="font-bold text-2xl mb-4">Files</h2>
-        <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
+        {/* <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
           {JSON.stringify(file_data, null, 2)}
-        </pre>
-        <div>
-        <table className="table-auto overflow-auto items-center rounded-md w-full">
-              <thead className='border-b border-white bg-purple-300/20 text-purple-700 hover:shadow-gray-100'>
-                  <tr className='border-purple-900 border-5 font-bold'>
-                  <th className='rounded-tl-md'>File Name</th>
-                  <th className=''>Upload Date</th>
-                  <th className=''>Size</th>
-                  <th className='rounded-tr-md'>Actions</th>
-                  </tr>
-              </thead>
-              <tbody className=''>
-                { listFiles }
-              </tbody>
-            </table>
-        </div>
+        </pre> */}
+        <Table/>
       </div>
     </div>
   );
