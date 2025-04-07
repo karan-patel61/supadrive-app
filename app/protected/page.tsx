@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
-import { Download, InfoIcon, Trash } from "lucide-react";
 import { redirect } from "next/navigation";
 import  Table  from "@/components/table";
+import { FileUploadDemo } from "@/components/file-upload-demo";
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
@@ -39,6 +39,7 @@ export default async function ProtectedPage() {
           {JSON.stringify(file_data, null, 2)}
         </pre> */}
         <Table/>
+        <FileUploadDemo/>
       </div>
     </div>
   );
