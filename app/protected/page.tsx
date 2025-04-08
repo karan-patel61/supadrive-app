@@ -48,9 +48,9 @@ export default async function ProtectedPage() {
         </pre> */}
         <Table/>
       </div>
-      <div className="justify-items-center">
+      {/* <div className="justify-items-center">
         <FileUploadDemo/>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -13,7 +13,7 @@ const FileUploadDemo = () => {
   })
 
   return (
-    <div className="w-[500px]">
+    <div className="w-[300px] md:w-[500px]">
       <Dropzone {...props}>
         <DropzoneEmptyState />
         <DropzoneContent />

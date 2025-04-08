@@ -51,7 +51,7 @@ export function Dialog({ isOpen, onClose, title, children }: DialogProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative z-10 w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-xl"
+            className="relative z-10 bg-white dark:bg-gray-800 rounded-lg shadow-xl"
             role="dialog"
             aria-modal="true"
             aria-labelledby="dialog-title"
