@@ -4,11 +4,14 @@ import { Download, Trash } from "lucide-react";
 export default async function Table() {
 
     const supabase = await createClient();
-    
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
       const file_data = await supabase
       .from('todos')
       .select('*')
-      .order('id', { ascending: true })
+      .eq('user_id',user?.id)
     
       function bytesToSize(bytes:number) {
         var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -33,7 +36,7 @@ export default async function Table() {
 
 
     return (
-        <div className="w-full">
+        <div className="w-full flex flex-col">
             <table className="table-auto overflow-auto items-center rounded-md w-full">
               <thead className='border-b border-white text-purple-700 hover:shadow-gray-100'>
                   <tr className='border-purple-900 border-5 font-bold'>

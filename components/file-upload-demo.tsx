@@ -5,8 +5,8 @@ import { useSupabaseUpload } from '@/hooks/use-supabase-upload'
 
 const FileUploadDemo = () => {
   const props = useSupabaseUpload({
-    bucketName: 'test',
-    path: 'test',
+    bucketName: 'file_bucket',
+    path: 'public',
     allowedMimeTypes: ['image/*'],
     maxFiles: 2,
     maxFileSize: 1000 * 1000 * 10, // 10MB,

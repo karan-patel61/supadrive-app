@@ -112,7 +112,9 @@ const useSupabaseUpload = (options: UseSupabaseUploadOptions) => {
 
   const onUpload = useCallback(async () => {
     setLoading(true)
-
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     // [Joshen] This is to support handling partial successes
     // If any files didn't upload for any reason, hitting "Upload" again will only upload the files that had errors
     const filesWithErrors = errors.map((x) => x.name)
@@ -126,6 +128,15 @@ const useSupabaseUpload = (options: UseSupabaseUploadOptions) => {
 
     const responses = await Promise.all(
       filesToUpload.map(async (file) => {
+
+        let time = new Date().toLocaleTimeString()
+        let date = new Date().toLocaleDateString()
+        const todo = await supabase
+          .from('todos')
+          .insert({user_id: user?.id, file_name: file.name, file_size: file.size , inserted_at:date+" "+time})
+          .select()
+          .single()
+
         const { error } = await supabase.storage
           .from(bucketName)
           .upload(!!path ? `${path}/${file.name}` : file.name, file, {
