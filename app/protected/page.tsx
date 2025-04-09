@@ -6,24 +6,7 @@ import { DialogExample } from "@/components/dialog-example";
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
-
- const deleteTodo  = async(file_id: number, file_name: string) => {
-  try {
-    //remove from storage bucket
-    await supabase
-    .storage
-    .from('file_bucket')
-    .remove(['public/'+file_name])
-    //remove from table
-   await supabase
-      .from('todos')
-      .delete()
-      .eq('id', file_id )
-    
-  } catch (error) {
-    console.log('error', error)
-  }
-}
+  
   const {
     data: { user },
   } = await supabase.auth.getUser();
