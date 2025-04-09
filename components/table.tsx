@@ -16,7 +16,7 @@ export default function Table() {
     const [todos, setTodos] = useState<Todos[]>([])
     const [fetching, setFetching] = useState(false)
     const supabase = createClient();
-    const  user = supabase.auth.getUser();
+    const user = supabase.auth.getUser();
 
     const deleteTodo  = async(file_id: number, file_name: string) => {
       try {
@@ -54,7 +54,7 @@ export default function Table() {
       
       setTimeout(()=>{
         fetchTodos()
-       }, 1000)
+       }, 2500)
       
     }, [todos])
     
