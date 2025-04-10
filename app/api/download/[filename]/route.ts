@@ -9,14 +9,14 @@ type GetParams = {
   };
   
   // export an async GET function. This is a convention in NextJS
-  export async function GET(req: NextRequest, { params }: GetParams) {
+  export async function GET(req: NextRequest, { params }: { params: { filename: string } }) {
 
     const cookieStore = cookies()
     // const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
     const supabase = createClient();
 
     // filename for the file that the user is trying to download
-    const filename = params.filename;
+    const filename = (await params).filename;
   
     //download the file from supabase
     const { data, error } = await (await supabase).storage.from('file_bucket').download('public/'+filename)

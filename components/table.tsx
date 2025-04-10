@@ -1,6 +1,6 @@
 'use client'
 import { createClient } from "@/utils/supabase/client";
-import { Download, Trash } from "lucide-react";
+import { Download, HardDriveDownload, Trash } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Todos = {
@@ -71,9 +71,10 @@ export default function Table() {
             <td>{file.inserted_at}</td>
             <td className='w-1/6'>{bytesToSize(file.file_size?file.file_size:0)}</td>
             <td className='overflow-x w-1/4 sm:w-1/5 align-center justify-center'>
-              <button className='rounded-md p-1 mt-1 transition ease-in-out hover:bg-gray-700/20 duration-500 dark:hover:bg-fuchsia-50/30' onClick={e => deleteTodo(file.id, file.file_name)} > <Trash/></button>
-              <form action={"/api/download/"+file.file_name} method="get" className='inline'>              
-                <button id='download' type='submit' className='rounded-md p-1 transition ease-in-out hover:bg-gray-700/20 duration-500 dark:hover:bg-fuchsia-50/30'> <Download/></button>
+              <button className='rounded-md p-1 mt-1 transition ease-in-out hover:bg-gray-700/20 duration-500 dark:hover:bg-fuchsia-50/30' onClick={e => deleteTodo(file.id, file.file_name)} > <Trash/></button>             
+              {/* <button id='download' type='submit' className='rounded-md p-1 transition ease-in-out hover:bg-gray-700/20 duration-500 dark:hover:bg-fuchsia-50/30' onClick={e => downloadFile(file.file_name)}> <Download/></button> */}
+              <form action={"/api/download/"+file.file_name} method="get" className='inline'>
+              <button id='download' type='submit' className='rounded-md p-1 transition ease-in-out hover:bg-gray-700/20 duration-500 dark:hover:bg-fuchsia-50/30' > <HardDriveDownload/></button>
               </form>
             </td>
           </tr>
