@@ -56,6 +56,20 @@ export const signInAction = async (formData: FormData) => {
   return redirect("/protected");
 };
 
+export const googlelogin = async (formData: FormData)=>{
+  const origin = (await headers()).get("origin");
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.signInWithOAuth({
+  provider: 'google',
+  options: {
+    redirectTo: `${origin}/auth/callback`,
+  },
+})
+if (data.url) {
+  redirect(data.url) // use the redirect API for your server framework
+}
+}
+
 export const forgotPasswordAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
   const supabase = await createClient();
