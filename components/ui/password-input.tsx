@@ -32,7 +32,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
           className="absolute inset-y-0 right-0 flex items-center pr-2"
           onClick={togglePasswordVisibility}
         >
-          {showPassword ? <EyeOff className="text-slate-500 hover:text-slate-800" /> : <Eye className="text-slate-500 hover:text-slate-800" />}
+          {showPassword ? <EyeOff className="dark:text-white hover:text-gray-800" /> : <Eye className="dark:text-white hover:text-gray-800" />}
         </button>
       </div>
     );
