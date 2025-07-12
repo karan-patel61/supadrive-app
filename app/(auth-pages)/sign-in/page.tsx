@@ -4,10 +4,13 @@ import { SubmitButton } from "@/components/submit-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PasswordInput } from "@/components/ui/password-input";
 import Link from "next/link";
 
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
+  var showPassword = false;
+
   return (
     <div>
     <form className="flex-1 flex flex-col min-w-64">
@@ -30,8 +33,8 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
             Forgot Password?
           </Link>
         </div>
-        <Input
-          type="password"
+        <PasswordInput
+          type={showPassword ? "text" : "password"}
           name="password"
           placeholder="Your password"
           required
@@ -44,7 +47,7 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
     </form>
     <form className="flex-1 flex flex-col min-w-64">
       <SubmitButton pendingText="Signing In..." formAction={googlelogin}>
-          Google OAUTH
+          Google Login
         </SubmitButton>
     </form>
     </div>
