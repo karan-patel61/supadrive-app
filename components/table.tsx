@@ -2,6 +2,7 @@
 import { createClient } from "@/utils/supabase/client";
 import { Download, HardDriveDownload, Trash } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useSnackbar } from "@/components/ui/usesnackbar";
 
 type Todos = {
   id: number;
@@ -17,6 +18,7 @@ export default function Table() {
     const [fetching, setFetching] = useState(false)
     const supabase = createClient();
     const user = supabase.auth.getUser();
+    const snackbar = useSnackbar();
 
     const deleteTodo  = async(file_id: number, file_name: string) => {
       try {
@@ -33,12 +35,18 @@ export default function Table() {
         
       } catch (error) {
         console.log('error', error)
+        snackbar("Error deleting file: " + error, "error");
+      }
+      finally {
+        snackbar("File deleted successfully!", "success");
       }
     }
 
     useEffect(() => {
+
       const fetchTodos = async () => {
         setFetching(true)
+        snackbar("Fetching files...", "info");
         const { data: todos, error } = await supabase
           .from('todos')
           .select('*')
@@ -72,7 +80,6 @@ export default function Table() {
             <td className='w-1/6'>{bytesToSize(file.file_size?file.file_size:0)}</td>
             <td className='overflow-x w-1/4 sm:w-1/5 align-center justify-center'>
               <button className='rounded-md p-1 mt-1 transition ease-in-out hover:bg-gray-700/20 duration-500 dark:hover:bg-fuchsia-50/30' onClick={e => deleteTodo(file.id, file.file_name)} > <Trash/></button>             
-              {/* <button id='download' type='submit' className='rounded-md p-1 transition ease-in-out hover:bg-gray-700/20 duration-500 dark:hover:bg-fuchsia-50/30' onClick={e => downloadFile(file.file_name)}> <Download/></button> */}
               <form action={"/api/download/"+file.file_name} method="get" className='inline'>
               <button id='download' type='submit' className='rounded-md p-1 transition ease-in-out hover:bg-gray-700/20 duration-500 dark:hover:bg-fuchsia-50/30' > <HardDriveDownload/></button>
               </form>
