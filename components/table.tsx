@@ -46,7 +46,7 @@ export default function Table() {
 
       const fetchTodos = async () => {
         setFetching(true)
-        snackbar("Fetching files...", "info");
+        // snackbar("Fetching files...", "info");
         const { data: todos, error } = await supabase
           .from('todos')
           .select('*')
@@ -59,12 +59,11 @@ export default function Table() {
           setTodos(todos)
         }
       }
-      
       setTimeout(()=>{
         fetchTodos()
-       }, 2500)
+       }, 1750)
       
-    }, [todos])
+    }, [todos]);
     
       function bytesToSize(bytes:number) {
         var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
