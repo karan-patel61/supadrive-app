@@ -5,11 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { SmtpMessage } from "../smtp-message";
+import { PasswordInput } from "@/components/ui/password-input";
 
 export default async function Signup(props: {
   searchParams: Promise<Message>;
 }) {
   const searchParams = await props.searchParams;
+  var showPassword = false;
   if ("message" in searchParams) {
     return (
       <div className="w-full flex-1 flex items-center h-screen sm:max-w-md justify-center gap-2 p-4">
@@ -32,13 +34,20 @@ export default async function Signup(props: {
           <Label htmlFor="email">Email</Label>
           <Input name="email" placeholder="you@example.com" required />
           <Label htmlFor="password">Password</Label>
-          <Input
+          {/* <Input
             type="password"
             name="password"
             placeholder="Your password"
             minLength={6}
             required
-          />
+          /> */}
+          <PasswordInput
+          type={showPassword ? "text" : "password"}
+          name="password"
+          placeholder="Your password"
+          minLength={6}
+          required
+        />
           <SubmitButton formAction={signUpAction} pendingText="Signing up...">
             Sign up
           </SubmitButton>
