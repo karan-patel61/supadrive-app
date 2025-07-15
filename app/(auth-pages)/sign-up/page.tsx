@@ -34,13 +34,6 @@ export default async function Signup(props: {
           <Label htmlFor="email">Email</Label>
           <Input name="email" placeholder="you@example.com" required />
           <Label htmlFor="password">Password</Label>
-          {/* <Input
-            type="password"
-            name="password"
-            placeholder="Your password"
-            minLength={6}
-            required
-          /> */}
           <PasswordInput
           type={showPassword ? "text" : "password"}
           name="password"
