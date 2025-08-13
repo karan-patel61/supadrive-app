@@ -18,7 +18,7 @@ export default async function ProtectedPage() {
   }
 
   return (
-    <div className="flex w-full flex flex-col gap-12">
+    <div className="flex w-full flex-col gap-12">
       {/* <ToastProvider />
       <div className="flex flex-col">
         <div className="flex flex-row">
