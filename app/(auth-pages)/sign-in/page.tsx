@@ -44,6 +44,11 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
         <FormMessage message={searchParams} />
       </div>
     </form>
+    <div className="flex items-center gap-2 my-2">
+          <div className="flex-1 p-[1px] bg-gradient-to-r from-transparent via-foreground/30 to-white/60" />
+          <span className="text-md text-gray-400">or</span>
+          <div className="flex-1 p-[1px] bg-gradient-to-r from-white/60 via-foreground/30 to-transparent" />
+    </div>
     <form className="flex-1 flex flex-col min-w-64">
       <SubmitButton pendingText="Signing In..." formAction={googlelogin}>
           Google Login
