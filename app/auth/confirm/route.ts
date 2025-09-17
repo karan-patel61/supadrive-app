@@ -14,8 +14,8 @@ export async function GET(request: Request) {
     const supabase = await createClient()
 
     const { error } = await supabase.auth.verifyOtp({
+      type,
       token_hash,
-      type
     })
     if (!error) {
       // redirect user to specified redirect URL or root of app
