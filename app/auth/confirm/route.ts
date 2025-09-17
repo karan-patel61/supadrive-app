@@ -21,6 +21,10 @@ export async function GET(request: Request) {
       // redirect user to specified redirect URL or root of app
       return NextResponse.redirect(new URL('/protected', request.url))
     }
+    else {
+      // redirect the user to an error page with some instructions
+      return NextResponse.redirect(`/auth/error?error=${error?.message}`);
+    }
   }
 
   // redirect the user to an error page with some instructions
